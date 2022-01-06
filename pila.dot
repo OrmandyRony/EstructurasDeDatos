@@ -1,0 +1,9 @@
+digraph Pila { node [shape = box];
+
+Carro3;
+Carro2;
+Carro1;
+Carro3->Carro2;
+
+Carro2->Carro1;
+}
