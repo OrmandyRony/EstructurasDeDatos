@@ -1,0 +1,7 @@
+digraph Cola { node [shape = box];
+1;
+2;
+3;
+1->2;
+2->3;
+}
