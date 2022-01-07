@@ -38,18 +38,22 @@ class DoublyLinkedList {
 
     delet(key) {
         let tmp = this.search(key);
-
-        if (tmp == this.head) {
-            this.head = tmp.next;
-            tmp = null;
-        } else if (tmp.next == null) {
-            tmp.prev.next = null;
-            tmp = null;
+        if (tmp != null) {
+            if (tmp == this.head) {
+                this.head = tmp.next;
+                tmp = null;
+            } else if (tmp.next == null) {
+                tmp.prev.next = null;
+                tmp = null;
+            } else {
+                tmp.prev.next = tmp.next;
+                tmp.next.prev = tmp.prev;
+                tmp = null;
+            }
         } else {
-            tmp.prev.next = tmp.next;
-            tmp.next.prev = tmp.prev;
-            tmp = null;
+            console.log("La llave no existe");
         }
+        
 
     }
 
@@ -61,6 +65,22 @@ class DoublyLinkedList {
             tmp = tmp.next;
         }
     }
+
+    plotDot() {
+        let tmp = this.head;
+        let cadena = "digraph ListaDoble { node[shape = box];\n";
+        let cadena2 = "";
+        while (tmp != null) {
+            cadena += tmp.key + ";\n";
+            if (tmp.next != null) {
+                cadena2 += tmp.key + "->" + tmp.next.key + ";\n";
+            } 
+            
+            tmp = tmp.next;
+        }
+        cadena = cadena + cadena2 + "}";
+        console.log(cadena);
+    }
 }
 
 let doublyLinkedList = new DoublyLinkedList();
@@ -70,6 +90,7 @@ doublyLinkedList.insert(16);
 doublyLinkedList.insert(9);
 doublyLinkedList.insert(25);
 doublyLinkedList.print();
+doublyLinkedList.plotDot();
 console.log("Eliminacion 25");
 doublyLinkedList.delet(25);
 doublyLinkedList.print();

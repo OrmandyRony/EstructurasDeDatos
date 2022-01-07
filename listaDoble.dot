@@ -1,0 +1,11 @@
+digraph ListaDoble { node[shape = box];
+25;
+9;
+16;
+4;
+1;
+25->9;
+9->16;
+16->4;
+4->1;
+}
